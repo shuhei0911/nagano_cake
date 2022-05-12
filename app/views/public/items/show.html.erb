@@ -1,0 +1,37 @@
+<div class="container m-5">
+  <div class='row d-flex justify-content-center'>
+    <div class="col-auto">
+      
+    </div>
+
+    <div class='col-auto'>
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <td>
+              <h1><%= @item.name %></h1>
+            </td>
+          </tr>
+          <tr>
+            <td class="item.intro"><%= @item.introduction %></td>
+          </tr>
+          <tr>
+            <td><strong>¥ <%= @item.add_tax_price.to_s(:delimited) %></strong> (税込)</td>
+          </tr>
+          <tr>
+            <td>
+              <% if current_customer.presence %>
+                <%= form_with model:@cart_items, local: true do |f|  %>
+                  <%= f.hidden_field :item_id, value: @item.id %>
+                  <%= f.hidden_field :customer_id, value: current_customer.id %>
+                  <%= f.select :amount, *[1..10] %>
+                  <%= f.submit 'カートに入れる', class:'btn btn-success ml-3' %>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

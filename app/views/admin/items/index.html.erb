@@ -1,0 +1,36 @@
+<div class="container mb-5">
+  <div class="row mr-3 d-flex">
+    <h2 class="mx-5 mt-3 px-4 bg-light shadow">商品一覧</h2>
+  </div>
+  <div class="d-flex justify-content-end">
+      <%= link_to "＋", new_admin_item_path, class: "btn mb-3 shadow pulus color: black" %>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <table class="table table-hover shadow">
+      <thead class="bg-light">
+        <tr>
+          <th>商品ID</th>
+          <th>商品名</th>
+          <th>税抜価格</th>
+          <th>ジャンル</th>
+          <th>ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @items.each do |item| %>
+        <tr>
+          <td><%= item.id %></td>
+          <td><%= link_to item.name, admin_item_path(item.id), class: "item-link" %></td>
+          <td><%= item.price %></td>
+          <td><%= item.genre.name %></td>
+          <% if item.sales_status == true %>
+            <th style="color: green">販売中</th>
+          <% else %>
+            <th style="color: gray">販売停止中</th>
+          <% end %>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

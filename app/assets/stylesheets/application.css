@@ -13,3 +13,42 @@
  *= require_tree .
  *= require_self
  */
+
+
+
+@import "bootstrap";
+
+.copy{
+  border-top:1px solid;
+  text-align:center;
+  padding-top:25px;
+}
+nav {
+  font-family: 'RocknRoll One', sans-serif;
+  font-size: 20px;
+  color: #F979AF;
+}
+a {
+  color: #F979AF;
+}
+a:hover {
+  color: #F979AF;
+}
+
+li+ li {
+  border-left: 2px solid #F979AF;
+}
+
+footer{
+  background-color: #fffaf0;
+  height:100px;
+}
+
+.footer{
+  font-size: small;
+  color:#ac996f;
+}
+
+
+
+

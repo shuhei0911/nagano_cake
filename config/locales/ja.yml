@@ -1,0 +1,12 @@
+# # ja: 日本語の設定を行う
+#     enums: enumの設定を行う
+#       [モデル名]:
+#         [カラム名]:
+#           [enumで番号と紐付けた要素]
+#           [enumで番号と紐付けた要素]: 要素の数だけ追加する
+ja:
+  activerecord:
+    attributes:
+    errors:
+      messages:
+        record_invalid: "バリデーションに失敗しました: %{errors}"

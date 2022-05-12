@@ -1,0 +1,87 @@
+<div class='container'>
+  <div class="row">
+    <h2 class="mt-5 shadow px-4 bg-light"><%= @customer.last_name %> <%= @customer.first_name %> さんの会員情報編集</h2>
+  </div>
+
+  <div class='form-group row'>
+    <p class='col-md-2 col-form-label'>会員ID</p>
+    <div class='col'>
+      <p class='form-control-plaintext'><%= @customer.id %></p>
+    </div>
+  </div>
+
+  <%# モデルにインスタンス変数を指定するだけではコントローラーをうまく認識してくれないため、url・method:のオプションを利用する %>
+  <%#url:→どのコントローラーのどのアクションを使うか method:→どのメソッドを使うか%>
+  <%= form_with model:@customer, url: admin_customer_path, method: :PATCH, local: true do |f| %>
+    <div class='form-group row'>
+      <%= f.label '名前', class: 'col-md-2 col-form-label' %>
+      <div class='col-auto'>
+        <%= f.text_field :last_name, class: 'form-control' %>
+      </div>
+      <div class='col-auto'>
+        <%= f.text_field :first_name, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class='form-group row'>
+      <%= f.label 'ふりがな', class: 'col-md-2 col-form-label' %>
+      <div class='col-auto'>
+        <%= f.text_field :kana_last_name, class: 'form-control' %>
+      </div>
+      <div class='col-auto'>
+        <%= f.text_field :kana_first_name, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class='form-group row'>
+      <%= f.label '郵便番号', class: 'col-md-2 col-form-label' %>
+      <div class='col-auto'>
+        <%= f.text_field :post_code, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class='form-group row'>
+      <%= f.label '住所', class: 'col-md-2 col-form-label' %>
+      <div class='col'>
+        <%= f.text_field :address, class: 'col-md-9 form-control' %>
+      </div>
+    </div>
+
+    <div class='form-group row'>
+      <%= f.label '電話番号', class: 'col-md-2 col-form-label' %>
+      <div class='col-auto'>
+        <%= f.text_field :telephone, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class='form-group row'>
+      <%= f.label 'メールアドレス', class: 'col-md-2 col-form-label' %>
+      <div class='col-auto'>
+        <%= f.text_field :email, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class='form-group row align-items-center'>
+      <%= f.label '会員ステータス', class: 'col-md-2 col-form-label' %>
+      <div class='col-auto'>
+        <div class='form-check form-check-inline'>
+          <%= f.radio_button :is_deleted, :false, class: 'form-check-input' %>
+          <%= f.label :is_deleted, '有効', value: false, class:'form-check-label' %>
+        </div>
+        <div class='form-check form-check-inline'>
+          <%= f.radio_button :is_deleted, :true, class: 'form-check-input'  %>
+          <%= f.label :is_deleted, '退会', value: true, class:'form-check-label' %>
+        </div>
+      </div>
+    </div>
+
+    <div class='form-group row pb-5'>
+      <div class='col-md-2'></div>
+      <div class='col'>
+        <div class='actions'>
+          <%= f.submit '変更を保存', class:'btn btn-success btn-lg col-md-3' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

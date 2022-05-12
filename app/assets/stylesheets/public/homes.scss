@@ -1,0 +1,42 @@
+// Place all the styles related to the public/homes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.welcome-text{
+  margin-right:45px;
+}
+
+.main-visual{
+  background-image:image-url('top-bg-img1.jpeg');
+  width:1000px;
+  height:360px;
+  background-size:cover;
+  display:flex;
+  align-items:center;
+  justify-content: center;
+  background-position:center;
+}
+
+.main-visual-text{
+  display:flex;
+  justify-content: center;
+  text-align:center;
+  width:500px;
+  height:250px;
+  background-color:rgba(255,255,255,0.5);
+}
+
+.text{
+  padding-top:70px;
+  font-weight:bold;
+  font-size:20px;
+}
+
+h1.text-center{
+  font-size:100px;
+}
+
+p.text-center{
+  font-size:25px;
+
+}

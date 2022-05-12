@@ -1,0 +1,18 @@
+<div class="container">
+
+  <div class="row top">
+    <h1 class="font-weight-bold">商品一覧 </h1>
+    <p class="count align-self-end"> (全<%= @item.count %>件)</p>
+  </div>
+  <div class="row bottom mt-5">
+    <% @items.each do |item| %>
+      <div class="flex-start ml-3">
+        
+        <p class="font-weight-bold"><%= link_to item.name, item_path(item.id), class: "item_#{item.id}" %></p>
+        <p class="font-weight-bold">¥<%= item.price %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="paginate"><%= paginate @items %></div>

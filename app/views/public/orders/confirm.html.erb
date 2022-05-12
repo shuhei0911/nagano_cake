@@ -1,0 +1,63 @@
+<div class='container'>
+  <h4 class='offset-md-1 p-4'>注文確認画面</h4>
+  <div class='row'>
+    <table class="col-md-8 table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>商品名</th>
+          <th>単価（税込）</th>
+          <th>数量</th>
+          <th>小計</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cart_items.each do |item| %>
+        <tr>
+          <td>
+            
+            <%= item.item.name %>
+          </td>
+          <td class='align-middle' style="width:130px"><%= item.item.add_tax_price.to_s(:delimited) %></td>
+          <td class='align-middle' style="width:120px"><%= item.amount %></td>
+          <td class='align-middle'><%= (item.item.add_tax_price * item.amount).to_s(:delimited) %></td>
+        </tr>
+        <% @temp_sum += item.item.add_tax_price.to_s(:dalimited).to_i * item.amount %>
+        <% end %>
+      </tbody>
+    </table>
+    <div class='col-md-1'>
+    </div>
+      <table class='col-md-3 table table-bordered table-hover', style='height:40px'>
+        <tr>
+          <th>送料</th><td>800</td>
+        </tr>
+        <tr>
+          <th>商品合計</th><td><%= @temp_sum.to_s(:delimited) %></td>
+        </tr>
+        <tr>
+        <th>請求金額</th><td><%= (@temp_sum + 800).to_s(:delimited) %></td>
+        </tr>
+      </table>
+  </div>
+  <div class='row'>
+    <h4 class='col-md-2'>支払い方法</h4>
+    <p class='col'><%= @order.payment %></p>
+  </div>
+  <div class='row'>
+    <h4 class='col-md-2'>配送先</h4>
+    <p class='col'><%= '〒' + @order.delivery_postcode + ' ' + @order.delivery_address + ' ' + @order.delivery_name %></p>
+  </div>
+</div>
+<div class='text-center'>
+<%= form_with model:@order, url:orders_path, local: true do |f| %>
+  <%= f.hidden_field :customer_id,        value: current_customer.id %>
+  <%= f.hidden_field :shipping_fee,       value: 800 %>
+  <%= f.hidden_field :total_price,        value: @temp_sum + 800 %>
+  <%= f.hidden_field :payment,            value: @order.payment %>
+  <%= f.hidden_field :order_status,       value: @order.order_status %>
+  <%= f.hidden_field :delivery_postcode,  value: @order.delivery_postcode %>
+  <%= f.hidden_field :delivery_address,   value: @order.delivery_address %>
+  <%= f.hidden_field :delivery_name,      value: @order.delivery_name %>
+  <%= f.submit '注文を確定する', class:'btn btn-success'%>
+<% end %>
+</div>

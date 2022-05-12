@@ -1,0 +1,65 @@
+<div class='container'>
+  <h4 class='offset-md-1 p-4'>注文履歴詳細</h4>
+  <div class='row'>
+  <table class='col-md-8 table table-bordered table-hover'>
+    <tr>
+      <th>注文日</th>
+      <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+    </tr>
+    <tr>
+      <th>配送先</th>
+      <td>
+        〒<%= @order.delivery_postcode %><br>
+        <%= @order.delivery_address %><br>
+        <%= @order.delivery_name %>
+      </td>
+    </tr>
+    <tr>
+      <th>支払い方法</th>
+      <td><%= @order.payment %></td>
+    </tr>
+    <tr>
+      <th>ステータス</th>
+      <td><%= @order.order_status %></td>
+    </tr>
+  </table>
+    <div class='col-md-1'>
+    </div>
+      <table class='col-md-3 table table-bordered table-hover', style='height:40px'>
+        <tr>
+          <th>商品合計</th>
+          <td>
+            <%= (@order.total_price - @order.shipping_fee).to_s(:delimited)%>
+          </td>
+        </tr>
+        <tr>
+          <th>送料</th><td><%= @order.shipping_fee.to_s(:delimited) %></td>
+        </tr>
+        <tr>
+        <th>ご請求額</th><td><%= @order.total_price.to_s(:delimited) %></td>
+        </tr>
+      </table>
+  </div>
+  <div class='row'>
+    <table class='col table table-bordered table-hover'>
+      <thead>
+        <tr>
+          <th>商品名</th>
+          <th>単価（税込）</th>
+          <th>数量</th>
+          <th>小計</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @order_item.each do |item| %>
+          <tr>
+            <td><%= item.item.name %></td>
+            <td><%= item.add_tax_price_on_purchase.to_s(:delimited) %></td>
+            <td><%= item.quantity %></td>
+            <td><%= (item.quantity * item.add_tax_price_on_purchase).to_s(:delimited) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

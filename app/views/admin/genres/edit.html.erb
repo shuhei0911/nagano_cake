@@ -1,0 +1,22 @@
+<h1>（管理者側）ジャンル編集</h1>
+<br></br>
+
+<%#= form_with model: @genre,url: admin_genre_path(@genre),local: true do |f| %>
+<%#= f.text_field :name %>
+<%#= f.submit '変更を保存', class: "btn btn-success" %>
+<%# end %>
+<%= form_with model: @genre,url: admin_genre_path(@genre),local: true do |f| %>
+<table class="table table-hover table-inverse">
+  <thead>
+    <tr>
+      <th>ジャンル名</th>
+      <th>
+        <%= f.text_field :name, autofocus: true %>
+      </th>
+      <th>
+        <%= f.submit '変更を保存', class: "btn btn-success" %>
+      </th>
+    </tr>
+  </thead>
+</table>
+<% end %>

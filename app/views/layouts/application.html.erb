@@ -11,6 +11,61 @@
   </head>
 
   <body>
+    <header style="background-color:#FFDBC9">
+
+    <!--ロゴ-->
+
+<!--ここで、ディスプレイサイズの指定と背景色の指定-->
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <a class="logo" href="/"><%= image_tag 'header-logo2.jpeg', size: '120x80' %></a>
+          　<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            　<span class="navbar-toggler-icon"></span>
+          　</button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+            <ul class="navbar-nav ml-auto">
+              <% if admin_signed_in? %><!--adminでログインされている-->
+                <li class="px-2"><%= link_to '商品一覧' , admin_items_path %></li>
+                <li class="px-2"><%= link_to '会員一覧' , admin_customers_path %></li>
+                <li class="px-2"><%= link_to '注文履歴一覧' , admin_path %></li>
+                <li class="px-2"><%= link_to 'ジャンル一覧' , admin_genres_path %></li>
+                <li class="pl-2"><%= link_to 'ログアウト' , destroy_admin_session_path, method: :delete %></li>
+              <% elsif customer_signed_in? %><!--cutomerでログインされている-->
+                <b class="welcome-text">ようこそ、<%= current_customer.last_name %>さん！</b>
+                <li class="px-2"><%= link_to 'マイページ' , customers_mypage_path %></li>
+                <li class="px-2"><%= link_to '商品一覧' , items_path %></li>
+                <li class="px-2"><%= link_to 'カート' , cart_items_path %></li>
+                <li class="pl-2"><%= link_to 'ログアウト' , destroy_customer_session_path, method: :delete %></li>
+              <% else %><!--ログインされていない-->
+                <li class="px-2"><%= link_to 'About' , about_path %></li>
+                <li class="px-2"><%= link_to '商品一覧' , items_path %></li>
+                <li class="px-2"><%= link_to '新規登録' , new_customer_registration_path %></li>
+                <li class="pl-2"><%= link_to 'ログイン' , new_customer_session_path %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+
+    <!--できれば検索窓もつける-->
+
+   </header>
+
+  <main class='mt-5' style="margin-bottom:100px">
     <%= yield %>
+  </main>
+
+  <footer class='fixed-bottom'>
+
+    <div class='d-flex flex-column flex-row-reverse'>
+    <%= link_to root_path do %>
+     <%= image_tag('ft_logo' , size: '187x60' , class: 'float-right mr-5 mt-2')  %>
+    <% end %>
+    </div>
+    <p class='footer float-right mr-5'><strong>Copyright © 2022 shuhei Team. All rights reserved.</strong></p>
+    </div>
+  </footer>
   </body>
 </html>

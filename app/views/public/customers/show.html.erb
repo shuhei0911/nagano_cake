@@ -1,0 +1,42 @@
+<div class='container'>
+  <h4 class='offset-md-1 p-4'>マイページ</h4>
+  <div class='row my-3'>
+    <h4 class='col-md-2 d-flex align-items-center'><strong>登録情報</strong></h4>
+    <%= link_to '編集する', edit_customer_registration_path, class:'btn btn-success col-md-2' %>
+  </div>
+  <table class='table table-bordered'>
+    <tr>
+      <td class='w-25'>氏名</td>
+      <td><%= current_customer.last_name %> <%= current_customer.first_name %></td>
+    </tr>
+    <tr>
+      <td>カナ</td>
+      <td><%= current_customer.kana_last_name %> <%= current_customer.kana_first_name %></td>
+    </tr>
+    <tr>
+      <td>郵便番号</td>
+      <td><%= current_customer.post_code %></td>
+    </tr>
+    <tr>
+      <td>住所</td>
+      <td><%= current_customer.address %></td>
+    </tr>
+    <tr>
+      <td>電話番号</td>
+      <td><%= current_customer.telephone %></td>
+    </tr>
+    <tr>
+      <td>メールアドレス</td>
+      <td><%= current_customer.email %></td>
+    </tr>
+
+  </table>
+  <div class='row my-3'>
+    <h4 class='col-md-2'><strong>配送先</strong></h4>
+    <%= link_to '一覧を見る', delivery_addresses_path, class: 'btn btn-primary col-md-2'%>
+  </div>
+  <div class='row my-3'>
+    <h4 class='col-md-2'><strong>注文履歴</strong></h4>
+    <%= link_to '一覧を見る', orders_path, class: 'btn btn-primary col-md-2'%>
+  </div>
+</div>

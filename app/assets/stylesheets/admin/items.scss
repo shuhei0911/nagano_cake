@@ -1,0 +1,22 @@
+// Place all the styles related to the admin/items controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.pulus-btn {
+  border-radius: 100%;
+}
+
+.item-link {
+  // transition: 2s;
+  color: black;
+
+  padding: 0 10px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 50%, rgba(237, 109, 209,0.64) 50%);
+  background-position: 0 0; //0 50ならば下に50%、50 50 ならば右に50%下に50%が初期位置になる
+  background-size: 200% auto;
+  transition: 0.3s; // transition・・・状態が変わった時に起こす指示
+}
+
+.item-link:hover {
+  background-position: -100% 0;
+  color: #fff;
+}
